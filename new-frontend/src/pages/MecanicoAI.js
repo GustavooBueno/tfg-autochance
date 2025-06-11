@@ -20,7 +20,8 @@ import {
   CardActions,
   Divider,
   CircularProgress,
-  Alert
+  Alert,
+  Chip
 } from '@mui/material';
 import {
   ChatOutlined as ChatIcon,
@@ -302,7 +303,7 @@ const MecanicoAI = () => {
                 Com base no seu orçamento de <strong>R$ {conversationState.budget.toLocaleString('pt-BR')}</strong>,
                 perfil <strong>{conversationState.profile}</strong> e suas prioridades
                 (<strong>{conversationState.priorities.join(', ')}</strong>), 
-                selecionei os seguintes veículos para você:
+                pedimos para nossa IA analisar e ranquear os melhores veículos para você:
               </Typography>
               
               {conversationState.selectedCars.length === 0 ? (
@@ -323,10 +324,20 @@ const MecanicoAI = () => {
                         />
                         
                         <CardContent sx={{ flexGrow: 1 }}>
-                          <Typography variant="h6" component="div" gutterBottom>
-                            {car.nome}
-                          </Typography>
-                          
+                          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                            <Typography variant="h6" component="div" sx={{ flexGrow: 1, pr: 1 }}>
+                              {car.nome}
+                            </Typography>
+                            <Chip 
+                              icon={<StarIcon />} 
+                              label={car.score} 
+                              color="primary" 
+                              variant="filled"
+                              size="small"
+                              title={`Pontuação da IA: ${car.score}/100`}
+                            />
+                          </Box>
+
                           <Typography variant="h6" color="primary" gutterBottom>
                             R$ {car.preco.toLocaleString('pt-BR')}
                                         </Typography>
@@ -345,18 +356,13 @@ const MecanicoAI = () => {
                             </Typography>
                           </Box>
                           
-                          {/* Mostrar as principais razões da recomendação */}
-                          <Box sx={{ mt: 2 }}>
-                            <Typography variant="subtitle2" color="primary" gutterBottom>
-                              Por que recomendamos:
+                          <Box sx={{ mt: 2, p: 1.5, bgcolor: 'action.hover', borderRadius: 1 }}>
+                            <Typography variant="subtitle2" color="text.secondary" gutterBottom>
+                              Análise da IA:
                             </Typography>
-                            <Typography variant="body2">
-                              {conversationState.profile === 'Família' && 'Espaçoso e confortável para família.'}
-                              {conversationState.profile === 'Aventureiro' && 'Versatilidade para aventuras.'}
-                              {conversationState.profile === 'Urbano' && 'Prático e econômico para a cidade.'}
-                              {conversationState.profile === 'Luxo' && 'Acabamento e recursos premium.'}
-                              {conversationState.profile === 'Esportivo' && 'Desempenho e emoção ao dirigir.'}
-                                        </Typography>
+                            <Typography variant="body2" sx={{ fontStyle: 'italic' }}>
+                              "{car.justification}"
+                            </Typography>
                           </Box>
                                       </CardContent>
                         

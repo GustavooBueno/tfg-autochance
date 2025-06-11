@@ -6,6 +6,9 @@ const dotenv = require('dotenv');
 // Carrega as variáveis de ambiente
 dotenv.config();
 
+// DEBUG: Verifica se a chave da API foi carregada corretamente
+console.log("Hugging Face API Key Loaded:", process.env.HUGGING_FACE_API_KEY ? "Yes" : "No");
+
 // Cria a aplicação Express
 const app = express();
 
@@ -13,16 +16,10 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Conecta ao MongoDB
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/autochance')
-  .then(() => console.log('Conectado ao MongoDB'))
-  .catch(err => console.error('Erro ao conectar ao MongoDB:', err));
-
 // Rotas
-app.use('/api/auth', require('./routes/auth'));
-app.use('/api/cars', require('./routes/cars'));
-app.use('/api/users', require('./routes/users'));
-app.use('/api/featured', require('./routes/featured'));
+app.use('/api/fipe', require('./routes/fipe'));
+app.use('/api/ai_analysis', require('./routes/ai_analysis'));
+app.use('/api/ai_ranker', require('./routes/ai_ranker'));
 
 // Tratamento de erros
 app.use((err, req, res, next) => {
