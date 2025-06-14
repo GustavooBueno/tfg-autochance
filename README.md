@@ -1,6 +1,4 @@
-# AutoChance - Sistema de Venda de Carros Usados
-
-O AutoChance é uma plataforma web para venda de carros usados, desenvolvida com React e Node.js.
+# AUTOCHANCE: UM SISTEMA WEB SCRAPING PARA BUSCA E ANÁLISE DE VEÍCULOS UTILIZANDO IA
 
 ## Tecnologias Utilizadas
 
