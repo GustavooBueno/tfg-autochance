@@ -14,6 +14,7 @@
   - Express
   - Supabase
   - RESTful API
+  - Python
 
 ## Como Executar o Projeto
 
