@@ -15,7 +15,7 @@ const normalize = (str) => {
     .trim();
 };
 
-// Função de fallback para gerar um valor FIPE simulado
+// Função de fallback para gerar um valor FIPE
 const generateMockFipeValue = (preco) => {
   if (!preco || isNaN(parseFloat(preco))) {
     console.error('Fallback FIPE falhou: preço do veículo não foi fornecido ou é inválido.');
