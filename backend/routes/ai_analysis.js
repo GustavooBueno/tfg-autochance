@@ -4,7 +4,7 @@ const router = express.Router();
 
 
 const generateMockAnalysisFallback = (nome, ano) => {
-  console.warn(`AVISO: Usando dados simulados como fallback para ${nome} (${ano})`);
+  console.warn(`AVISO: fallback para ${nome} (${ano})`);
   const ageInYears = new Date().getFullYear() - parseInt(ano, 10);
   const nameLower = nome.toLowerCase();
   
